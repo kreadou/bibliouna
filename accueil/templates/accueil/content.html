@@ -1,0 +1,25 @@
+{% load static %}
+  <main id="main">
+    <!-- ======= About Us Section ======= -->
+     {% block about %}
+      {#% include 'accueil/about.html' %#}
+    {% endblock about %}
+
+    <!-- ======= Services Section ======= -->
+    {% block service %}
+      {#% include 'accueil/service.html' %#}
+    {% endblock service %}
+
+    <!-- ======= Portfolio Section ======= -->
+    {% block personnel %}
+      {#% include 'accueil/personnel.html' %#}
+    {% endblock personnel %}
+
+    <!-- ======= Our Clients Section ======= -->
+    {% block partenaire %}
+      {% include 'accueil/partenaire.html' %}
+    {% endblock partenaire %}
+
+  </main>
+
+  

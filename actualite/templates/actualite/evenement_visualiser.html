@@ -1,0 +1,94 @@
+{% extends 'publication/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header %}
+  {% include "publication/header.html" %}
+{% endblock header %}
+
+
+{% block extrahead %}   {# Extra Resources Start #}
+{{ form.media }}        {# Form required JS and CSS #}
+{% endblock %}          {# Extra Resources End #}
+
+{% block content %}
+<style type="text/css">
+  p::first-letter {
+  font-family:lobster;
+  font-size:3.5em;
+  padding-right:0.2em;
+  float:left;
+  color:maroon;
+}
+</style>
+
+<div class="row">
+  <div class="col-md-12">
+    <br>
+    <div class="search-result bg-gray">
+      <h5><center>GESTION DES EVENEMENTS</center></h5>           
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-0 bg-gray">
+    </div>
+  </div>
+</section>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="box box-danger" style="border-top-color:maroon;">
+          <div class="col-lg-12">
+            <h3>{{evenement.titre.upper }}</h3><i class="fa fa-calendar" aria-hidden="true"></i> - <b><i>
+            <span class="badge bg-red">{{ evenement.type_evenement.title }}</span>
+             publié le {{evenement.date_publication }}</i>
+            {% if actualite.source %}&thinsp;- {{ actualite.source }} {% endif %}</b><br><br>
+          </div>
+
+          <div class="col-lg-12">  
+            <img src="{{ evenement.photo.url }}" class="img-fluid" width="100%" style="line-height: 25px; margin:10px" alt="">          
+          </div>  
+          
+          <div class="col-lg-12"> 
+            <div class="card">
+               <div class="row no-gutters">
+                 <div class="col-auto">
+                   
+                    <div class="col">
+                      <div class="card-block px-2">
+                        <p align="justify" style="line-height: 25px; margin:10px"><font size="3">
+                          {{ evenement.resume }}</font>
+                        </p>
+                      </div>
+                    </div>  
+                  </div>
+               </div>   
+            </div>
+            <hr>
+      </div> 
+    </div> 
+  </div>  
+</div>
+
+<div class="row">
+  {% for i in document_list %}
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <img src="{{ i.photo.url }}" class="img-fluid" width="100%" alt="">
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+<hr>
+<div class="row">
+  <div class="col-lg-4">
+    <a href="{% url 'actualite:evenement_lister' %}"><span class="btn btn-xs btn-primary">voir les autres événements</span></a>
+    <br>
+  </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,23 @@
+{% extends "administration/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{{ form.media }} 
+
+{% block header %}       
+{% endblock header %} 
+
+{% block aside %}    
+{% endblock aside %}
+
+{% block content %}
+
+<div style="display: inline-block; width: 65%; vertical-align:top;">
+    <form action="" method="post" style="padding: 20px; border: 1px solid #ddd">
+        <table>
+          {{ form|crispy }}
+        </table>
+        {% csrf_token %}
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+{% endblock %}

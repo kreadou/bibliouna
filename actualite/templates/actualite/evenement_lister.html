@@ -1,0 +1,74 @@
+{% extends "accueil/base.html" %}
+{% load static %}
+
+{% block carousel %}
+{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+  p::first-letter {
+  font-family:lobster;
+  font-size:3.5em;
+  padding-right:0.2em;
+  float:left;
+  color:maroon;
+}
+</style>
+<img src="{% static 'publication/assets/img/slide/salle.png' %}" width="100%" alt=""> 
+<div class="row">
+  <div class="col-md-12">
+    <br>
+    <div class="search-result">
+      <h4><center><b>ACTUALITES</b></center></h4>           
+    </div>
+  </div>
+</div>
+
+
+<div class="container" style="border-bottom:5px solid #ED7211; border-top:5px solid #ED7211;">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="box box-danger" style="border-top-color:maroon;">
+        {% for i in evenement_list %}
+          <div class="col-lg-12">
+            <h5>{{ i.titre.upper }}</h5><i class="fa fa-calendar" aria-hidden="true"></i> - <b><i>
+            <span class="badge bg-red">{{ i.type_evenement.title }}</span>
+             publié le {{ i.date_publication }}</i>
+          {% if i.type_evenement %}&thinsp;- {{ i.type_evenement }} {% endif %}</b><br><br>
+            <div class="card">
+               <div class="row no-gutters">
+                 <div class="col-auto">
+                  {% if i.photo_middle %}
+                    <img src="{{ i.photo_middle.url }}" style="float:left; padding-right: 15px; padding-top: 0px;" class="img-fluid" alt="">
+                  {% endif %}
+                    <div class="col">
+                      <div class="card-block px-2">
+                        <p align="justify" style="line-height: 25px; margin:10px"><font size="3">
+                          {{ i.resume|truncatechars:500 }}</font>
+                        </p> 
+                        <a href="{% url 'actualite:evenement_visualiser' pk=i.pk %}" class="btn btn-xs">
+                        <span class="badge badge-warning">lire la suite...</span></a>
+                      </div>
+                    </div>  
+                  </div>
+               </div>   
+            </div>
+
+          <hr>
+        </div>      
+        {% endfor %}
+        </div> 
+      </div>  
+    </div>
+</div>
+
+<script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+
+<style type="text/css">
+  th, td {
+    white-space: wrap;
+}
+</style>
+
+{% endblock content %}

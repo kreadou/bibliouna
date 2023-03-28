@@ -1,0 +1,76 @@
+{% extends 'publication/base.html' %}
+{% load static %}
+
+{% block search %}
+{% endblock %}
+
+{% block content %}
+<div class="content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+      <div class="search-result">
+        <h4><center><b>LISTES DES ABONNES</b></center></h4>           
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="border-bottom:5px solid #ED7211; border-top:5px solid #ED7211";>
+  <br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <div class="box-header"></div>
+          <div class="box-body">
+            <div class="row">
+              <table id="table1" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                <thead>
+                  <tr bgcolor="#FDEBD0">
+                    <th><center>Matricule</center></th>
+                    <th><center>Nom & Prénoms</center></th>
+                    <th><center>Cellulaire</center></th>
+                    <th><center>Email</center></th> 
+                    <th><center>Genre</center></th>
+                    <th><center>Type</center></th>
+                  </tr>
+                </thead>
+                <tbody id="list_donnee">
+                  {% for i in abonne_list %}
+                    <tr>
+                      <td><a href="{#% url 'auto:contrat_visualiser' i.24 %#}">{{ i.matricule }}</a></td>
+                      <td>{{ i.profil.nom }} {{ i.profil.prenoms }}</td>
+                      <td>{% if i.profil.cellulaire %} {{ i.profil.cellulaire }} {% endif %}</td>
+                      <td>{% if i.profil.email %} {{ i.profil.email }} {% endif %}</td>
+                      <td>{% if i.profil.sexe %} {{ i.profil.sexe }} {% endif %}</td>
+                      <td>{{ i.type_abonne }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>   
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+
+<style type="text/css">
+  th, td {
+    white-space: nowrap;
+}
+</style>
+
+<script type="text/javascript">
+<script type="text/javascript">
+  $(document).ready(function(){
+    var table1 = $('#table1').DataTable();
+    alert(1000);
+
+});
+</script>
+
+{% endblock content %}

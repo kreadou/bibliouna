@@ -1,0 +1,179 @@
+{% load static %}
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      {% comment %}
+      <div class="user-panel">
+        <div class="pull-left image">
+          {% if user.profil.photo %}
+          <img src="{{ MEDIA_URL }}{{ user.profil.photo.url }}" class="img-circle" alt="User Image">
+          {% endif %}
+        </div>
+        <div class="pull-left info">
+          <p>{{ user.last_name }}</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p><small>{{ user.profil.fonction }}</small></p>
+        </div>
+      </div>
+      {% endcomment %}
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header" style="color:cyan"><center><h4>PUBLICATIONS</h4></center></li>
+        
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>MONOGRAPHIES</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:ouvrage_lister' %}"><i class="fa fa-table"></i> Liste des Monographies</a></li>
+            <li><a href="{% url 'administration:ouvrage_creer' %}"><i class="fa fa-table"></i>Ajouter une Monographie</a></li>
+          </ul>
+        </li>
+
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>THESES</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:these_lister' %}"><i class="fa fa-table"></i>Liste des Thèses</a></li>
+            <li><a href="{% url 'administration:these_creer' %}"><i class="fa fa-edit"></i>Ajouter une Thèse</a></li>
+          </ul>
+        </li>
+ 
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>MEMOIRES</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:memoire_lister' %}"><i class="fa fa-table"></i>Liste des Mémoires</a></li>
+            <li><a href="{% url 'administration:memoire_creer' %}"><i class="fa fa-edit"></i>Ajouter un Mémoire</a></li>
+          </ul>
+        </li>
+
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>ARTICLES</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:article_lister' %}"><i class="fa fa-table"></i>Liste des Articles</a></li>
+            <li><a href="{% url 'administration:article_creer' %}"><i class="fa fa-edit"></i>Ajouter un Article</a></li>
+          </ul>
+        </li>
+
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>AUTEURS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:auteur_lister' %}"><i class="fa fa-table"></i>Liste des Auteurs</a></li>
+            <li><a href="{% url 'administration:auteur_creer' %}"><i class="fa fa-edit"></i>Ajouter un Auteur</a></li>
+          </ul>
+        </li>
+
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>EDITEURS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:editeur_lister' %}"><i class="fa fa-table"></i>Liste des Editeurs</a></li>
+            <li><a href="{% url 'administration:editeur_creer' %}"><i class="fa fa-edit"></i>Ajouter un Editeur</a></li>
+          </ul>
+        </li>
+
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>MOTS CLES</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:motcle' %}"><i class="fa fa-table"></i>Liste des Mots clés</a></li>
+          </ul>
+        </li>
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>UFR</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:ufr_lister' %}"><i class="fa fa-table"></i>Liste des UFR</a></li>
+            <li><a href="{% url 'administration:ufr_creer' %}"><i class="fa fa-edit"></i>Ajouter une UFR</a></li>
+          </ul>
+        </li>
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>DISCIPLINES</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:discipline' %}"><i class="fa fa-table"></i>Liste des Disciplines</a></li>
+          </ul>
+        </li>
+
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>SPECIALITES</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:specialite' %}"><i class="fa fa-table"></i>Liste des Spécialités</a></li>
+          </ul>
+        </li>
+
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>LABORATOIRES</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{% url 'administration:laboratoire' %}"><i class="fa fa-table"></i>Liste des Laboratoires</a></li>
+          </ul>
+        </li>
+        <li class="active treeview menu-open">
+          <a href="#">
+            <i class="fa fa-laptop"></i><span>PERSONNES DES JURYS</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           <li><a href="{% url 'administration:membre' %}"><i class="fa fa-table"></i>Ajouter plusieurs Membres</a></li>
+            <li><a href="{% url 'administration:membre_lister' %}"><i class="fa fa-table"></i>Liste des Membres</a></li>
+            <li><a href="{% url 'administration:membre_creer' %}"><i class="fa fa-edit"></i>Ajouter un Membre</a></li>
+
+
+            <li><a href="{% url 'administration:statut_lister' %}"><i class="fa fa-edit"></i>Liste des statuts des jurys</a></li>
+          </ul>
+        </li>
+       </ul>
+    </section>
+  </aside>

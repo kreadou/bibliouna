@@ -1,0 +1,28 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+{{ juryformset.management_form }}
+<div class="form-group col-md-12 mb-0">
+ <table id="table1" class="table table-bordered table-striped" cellspacing="0" width="100%">
+    <thead>
+      <th>Ordre</th>
+      <th>Membre</th>
+      <th>Statut</th>
+      <th>Actions</th>                  
+    </thead>  
+    <tbody>
+      <div id="tasks"
+        hx-confirm="Are you sure you want to delete this task?"
+        hx-target="#tasks"
+        hx-swap="outerHTML">
+        {% for jury in juryformset.forms %}  
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ jury.membre|as_crispy_field }}</td>
+            <td>{{ jury.statut|as_crispy_field }}</td>
+            <td></td>
+          </tr> 
+        {% endfor %}
+    </tbody>
+  </table>
+</div>

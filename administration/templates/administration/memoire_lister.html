@@ -1,0 +1,108 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}    
+<section class="content-header">
+  <h1>Mémoires</h1>
+  <ol class="breadcrumb">
+    <a href="{% url 'administration:memoire_creer' %}"><span class="btn btn-xs btn-primary">Ajouter un Mémoire</span></a>   
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-warning">
+        <div class="box-header"></div>
+        <div class="box-body">
+          <table id="table1" class="table table-bordered table-striped" cellspacing="0" width="100%">
+            <thead>
+              <tr bgcolor="#E8E3DB">
+                <th><center>Photo</center></th>
+                <th><center>Titre</center></th>
+                <th><center>Spécialité</center></th>
+                <th><center>Note</center></th>
+                <th><center>Auteur</center></th>
+                <th><center>Annee</center></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in memoire_list %}
+                <tr width="20">
+                  <td width="30"> 
+                    {% if i.photo %}
+                      <img class="img-rectangle" src="{{ MEDIA_URL }}{{ i.photo.url }}" width="65">
+                    {% endif %}
+                  </td>
+
+                  <td class="tdbreak" width="40%"><a href="{% url 'administration:memoire_modifier' i.pk %}">{{ i.titre }}</a>
+                  </td>
+                  <td>{% if i.specialite %} {{ i.specialite }} {% endif %}</td>
+                  <td>{{ i.note_generale }}</td>
+                  <td>{{ i.auteur }}</td>
+                  <td align="center">{{ i.date_soutenance }}</td>
+                </tr>
+              {% endfor %}    
+            </tbody>
+          </table>    
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{% static 'administration/js/jquery-3.5.1.js' %}"></script>
+<script src="{% static 'administration/js/jquery.dataTables.min.js' %}"></script>
+
+<style type="text/css">
+  th, td {
+    white-space: nowrap;
+}
+</style>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#table1').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      "lengthMenu"  : [[15, 50, -1], [15, 50, "All"]],
+      'searching'   : true,
+      'ordering'    : false,
+      'info'        : true,
+      'autoWidth'   : true,
+      'scrollX'     : true,
+      'scrollY'     : '400',
+      'scrollCollapse' : true,  
+
+      dom: 'Bfrtip',
+            buttons: ['print', 'excel',
+
+      ],
+
+      "language": {
+        "sProcessing": "Traitement en cours ...",
+        "sLengthMenu": "Afficher _MENU_ lignes",
+        "sZeroRecords": "Aucun résultat trouvé",
+        "sEmptyTable": "Aucune donnée disponible",
+        "sInfo": "Lignes _START_ à _END_ sur _TOTAL_",
+        "sInfoEmpty": "Aucune ligne affichée",
+        "sInfoFiltered": "(Filtrer un maximum de_MAX_)",
+        "sInfoPostFix": "",
+        "sSearch": "Chercher:",
+        "sUrl": "",
+        "sInfoThousands": ",",
+        "sLoadingRecords": "Chargement...",
+        "oPaginate": {
+          "sFirst": "Premier", "sLast": "Dernier", "sNext": "Suivant", "sPrevious": "Précédent"
+      },
+        "oAria": {
+          "sSortAscending": ": Trier par ordre croissant", "sSortDescending": ": Trier par ordre décroissant"
+      }
+    }
+  });
+});    
+</script>
+{% endblock %}

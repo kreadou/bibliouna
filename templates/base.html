@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <title>Bibliothèque de l'Université Nagui Abrogoua</title>
+
+    <!-- Favicon ================================================== -->
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+      
+    <!-- CSS ================================================== -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'corsa/plugins/bootstrap/bootstrap.min.css' %}">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="{% static 'corsa/plugins/fontawesome/css/all.min.css' %}">
+    <!-- Animation -->
+    <link rel="stylesheet" href="{% static 'corsa/plugins/animate-css/animate.css' %}">
+    <!-- slick Carousel -->
+    <link rel="stylesheet" href="{% static 'corsa/plugins/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'corsa/plugins/slick/slick-theme.css' %}">
+    <!-- Colorbox -->
+    <link rel="stylesheet" href="{% static 'corsa/plugins/colorbox/colorbox.css' %}">
+    <!-- Template styles-->
+    <link rel="stylesheet" href="{% static 'corsa/css/style.css' %}">
+
+  </head>
+  <body>
+      {% block header %}
+        {% include 'header.html' %}
+      {% endblock header %}
+
+      {% block carousel %}
+        {% include 'carousel.html' %}
+      {% endblock carousel %}
+
+      {% block search %}
+        {% include 'search.html' %}
+      {% endblock search %}
+
+      {% block aside %}
+        {#% include 'aside.html' %#}
+      {% endblock aside %}
+
+      {% block content %}
+        {% include 'content.html' %}
+      {% endblock content %}
+
+      {% block footer %}
+        {% include 'footer.html' %}
+      {% endblock footer %}
+
+      <!-- initialize jQuery Library -->
+      <script src="{% static 'corsa/plugins/jQuery/jquery.min.js' %}"></script>
+      <!-- Bootstrap jQuery -->
+      <script src="{% static 'corsa/plugins/bootstrap/bootstrap.min.js' %}" defer></script>
+      <!-- Slick Carousel -->
+      <script src="{% static 'corsa/plugins/slick/slick.min.js' %}"></script>
+
+      <script src="{% static 'corsa/plugins/slick/slick-animation.min.js' %}"></script>
+      <!-- Color box -->
+      <script src="{% static 'corsa/plugins/colorbox/jquery.colorbox.js' %}"></script>
+      <!-- shuffle -->
+      <script src="{% static 'corsa/plugins/shuffle/shuffle.min.js' %}" defer></script>
+
+      <script type="text/javascript">
+        $('.carousel').carousel({
+          interval: 5000
+        })
+      </script>
+  </body>
+</html>
+

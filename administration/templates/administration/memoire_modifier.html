@@ -1,0 +1,193 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+ <!-- Content Header (Page header) -->
+<section class="content-header">
+ <h1><center>Modification d'un Mémoire</center></h1>
+   <ol class="breadcrumb">
+   </ol>
+</section>
+
+<section class="content"><script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+{{ form.media }}
+  <div class="row">
+    <form method="post" action="{% url 'administration:memoire_modifier' memoire.id %}" enctype="multipart/form-data"> {% csrf_token %}
+    <div class="col-xs-2">
+     {% if memoire.photo %}
+     <div class="photo">
+      <img class="img-rectangle" src="{{ MEDIA_URL }}{{ memoire.photo.url }}" width= "100%", heigth="50%">
+     </div> 
+     {% endif %}
+    </div>
+    <div class="col-xs-10">
+      <div class="box box-warning">
+        <div class="box-header"><h3></h3></div>
+        <div class="box-body">
+          <div class="form-row">
+              <div class="form-group col-md-12 mb-0">
+                {{ form.titre|as_crispy_field }}
+              </div> 
+              <div class="form-group col-md-12 mb-0">
+                {{ form.auteur|as_crispy_field }}
+              </div> 
+                <!--         
+                <div class="form-group col-md-11 mb-0">
+                    
+                </div>  
+                <div class="form-group col-md-1 mb-0">
+                  <a href="jury_creer_popup" id="add_membres" onclick="return showAddPopup(this);"><span class="btn btn-xs btn-primary">+</span></a> 
+                </div>   -->
+              <div class="form-group col-md-12 mb-0">
+                 {{ form.ufr|as_crispy_field }}
+              </div> 
+              <!--
+              <div class="form-group col-md-1 mb-0">
+                <a href="ufr_creer_popup" id="add_ufr" onclick="return showAddPopup(this);"><span class="btn btn-xs btn-primary">+</span></a> 
+              </div> 
+                    -->
+              <div class="form-group col-md-12 mb-0">
+                  {{ form.specialite|as_crispy_field }}
+              </div>
+              <!--
+              <div class="form-group col-md-1 mb-0">
+                <a href="specialite_creer_popup" id="add_specialite" onclick="return showAddPopup(this);"><span class="btn btn-xs btn-primary">+</span></a> 
+              </div> -->
+              <div class="form-group col-md-12 mb-0">
+                  {{ form.laboratoire|as_crispy_field }}
+              </div>
+
+              <div class="form-group col-md-12 mb-0">
+                  {{ form.etablissement|as_crispy_field }}
+              </div>
+              <!--
+              <div class="form-group col-md-1 mb-0">
+                <a href="laboratoire_creer_popup" id="add_laboratoire" onclick="return showAddPopup(this);"><span class="btn btn-xs btn-primary">+</span></a> 
+              </div>
+              <div class="form-group col-md-1 mb-0">
+                <a href="discipline_creer_popup" id="add_discipline" onclick="return showAddPopup(this);"><span class="btn btn-xs btn-primary">+</span></a> 
+              </div> -->
+
+              <div class="form-group col-md-6 mb-0">
+                  {{ form.date_soutenance|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-6 mb-0">
+                  {{ form.annee_soutenance|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-12 mb-0">
+                  {{ form.cote|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-12 mb-0">
+                  {{ form.note_generale|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-12 mb-0">
+                  {{ form.resume|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-6 mb-0">
+                  {{ form.langue_publication|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-6 mb-0">
+                  {{ form.langue_originale|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-4 mb-0">
+                  {{ form.format_electronique|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-4 mb-0">
+                  {{ form.fpdf|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-4 mb-0">
+                  {{ form.ftexte|as_crispy_field }}
+              </div> 
+              <div class="form-group col-md-4 mb-0">
+                  {{ form.faudio|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-4 mb-0">
+                  {{ form.fvideo|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-4 mb-0">
+                  {{ form.photo|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-4 mb-0">
+                {{ form.url_associe|as_crispy_field }}
+              </div>
+              <div class="form-group col-md-12 mb-0">
+                <table id="table1" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                  {{ formset.management_form }}
+                  <thead class="text-center">
+                    <tr>
+                      <th>Membre du jury</th>
+                      <th>Statut</th>
+                      <th></th>
+                    </tr>
+                      </thead>
+                      <tbody>
+                      {% for f in formset %}
+                      <tr class="item">
+                        <td>{{ f.membre|as_crispy_field }}</td>
+                        <td>{{ f.statut|as_crispy_field }}</td>
+                        <td>
+                          <button type="button" class="btn btn-danger btn-sm remove-form-row"
+                                  id="{{ formset.prefix }}">
+                              Delete 
+                          </button>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                      <tr>
+                        <td colspan="3"
+                            style="border-left: none!important; border-right: none !important; border-bottom: none!important;">
+                            <button type="button" class="btn btn-sm btn-success add-form-row"
+                                    id="{{ formset.prefix }}">
+                               Ajouter un membre du Jury
+                            </button>
+                        </td>
+                      </tr>
+                      </tbody>
+                 </table>
+              </div>
+         </div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" name="submit" type="submit">Enregistrer</button>
+      <a href="{% url 'administration:memoire_lister' %}"><span class="btn btn-sm btn-primary pull-right">Accueil</span></a>
+    </div>
+   </form>
+ </div>   
+
+</section>
+
+<style type="text/css">
+.zoom {
+  width: 320px;
+  height: 240px;
+  }
+  .photo {
+  width: 100%;
+  height: 100%;
+  }
+  .photo img {
+  /* La transition s'applique à la fois sur la largeur et la hauteur, avec une durée d'une seconde. */
+  -webkit-transition: all 1s ease; /* Safari et Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* Internet Explorer 9 */
+  -o-transition: all 1s ease; /* Opera */
+  transition: all 1s ease;
+  }
+  .photo:hover img {
+  /* L'image est grossie de 25% */
+  -webkit-transform:scale(1.25); /* Safari et Chrome */
+  -moz-transform:scale(1.25); /* Firefox */
+  -ms-transform:scale(1.25); /* Internet Explorer 9 */
+  -o-transform:scale(1.25); /* Opera */
+  transform:scale(1.25);
+  }
+</style>
+
+
+<script src="{% static 'administration/js/bootstrap.min.css' %}"></script>
+<script src="{% static 'administration/js/bootstrap.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'administration/formset/formset.js' %}"></script>
+{% endblock content %}   

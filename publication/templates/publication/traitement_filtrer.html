@@ -1,0 +1,68 @@
+{% load static %}
+{% load urls_tags %}
+
+
+{% for i in publications %}
+  <div class="card mb-3" style="max-width: 100%px;">
+    <div class="row">
+      <div class="col-md-3">
+        {% if i.photo %}
+          <img class="img-rectangle" src="{{ MEDIA_URL }}{{ i.photo.url }}" width="100%" height="auto" alt="page de garde">
+        {% endif %}
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">{{ i.titre }}</h5>
+          <div class="card-text"></div>
+
+          {% if i.type_publication == 'thèse' %}
+            <div class="card-text"><b>Auteur : </b><span class="badge rounded-pill bg-success">{{ i.auteur }}</span></div>
+            <div class="card-text"><b>Spécialité : </b><span class="badge rounded-pill bg-success">{{ i.specialite }}</span></div>
+            <div class="card-text"><b>Membres jury : </b><span class="badge rounded-pill bg-success">{{ i.pmembres }}</span></div>
+
+          {% else %}
+            <div class="card-text"><b>Auteur(s) : </b><span class="badge rounded-pill bg-success">{{ i.pauteurs }}</span></div>
+
+            <div class="card-text"><b>Editeurs : </b><span class="badge rounded-pill bg-success">{{ i.pediteurs }}</span></div>
+
+            <div class="card-text"><b>Discipline : </b><span class="badge rounded-pill bg-success">{{ i.discipline.libelle }}</span></div>
+          {% endif %}
+
+          <div class="card-text"><b>Mots clés : </b><span class="badge rounded-pill bg-success">{{ i.pmotcles }}</span></div>
+
+          <div class="card-text"><b>Côte : </b><span class="badge rounded-pill bg-success">{{ i.cote }}</span></div>
+          <div class="card-text"><b>Format(s) électronique(s) : </b><span class="badge rounded-pill bg-success">{{ i.format_electronique }}</span></div>
+          <div class="card-text"><b>Date de soutenance : </b><span class="badge rounded-pill bg-success">{{ i.date_soutenance }}</span></div>
+          <a href="{% url 'publication:publication_detail' pk=i.id %}" target="_blank" style="color:#FF0000;"><span class="badge bg-warning text-dark">{{ i.type_publication|title }}, voir plus</span></a>
+
+        </div>
+      </div>
+    </div>
+    <span id="id_nombre_publication" style="display: none;">{{ publication_list.count }} Resultat(s) pour {{ element_selectionne }}</span>
+  </div>
+{% empty %}
+  <span id="id_nombre_publication" style="display: none;">{{ publication_list.count }} Resultat(s) pour {{ element_selectionne }}</span>
+{% endfor %}
+<hr>
+
+<!--Pagination-->
+<div class="container p-4">
+  <div class="btn-group" role="group" aria-label="Item pagination">
+    {% if publications.has_previous %}
+      <a href="{% my_url 1 'page' request.GET.urlencode %}" id="p1">First </a>
+      {% if publications.previous_page_number != 1 %}
+      <a href="{% my_url publications.previous_page_number 'page' request.GET.urlencode %}" id="pp">Previous</a>
+      {% endif %}
+    {% endif %}
+
+    Page {{ publications.number }} of {{ paginator.num_pages }}
+
+    {% if publications.has_next %}
+      {% if publications.next_page_number != paginator.num_pages %}
+        <a href="{% my_url publications.next_page_number 'page' request.GET.urlencode %} id="ps"> Next</a>
+      {% endif %}
+      <a href="{% my_url publications.paginator.num_pages 'page' request.GET.urlencode %}" id="pe"> Last</a>
+    {% endif %}
+  </div>
+</div>
+<!--end of Pagination-->

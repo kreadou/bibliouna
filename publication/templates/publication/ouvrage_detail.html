@@ -1,0 +1,142 @@
+{% extends "publication/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header %}
+  {% include 'accueil/header.html' %}
+
+ <img src="{% static 'publication/assets/img/slide/salle.png' %}" width="100%" alt=""> 
+{% endblock header %}
+
+{% block footer %}
+  {% include "footer.html" %}
+{% endblock footer  %}
+
+{% block search %}
+{%  endblock  %}
+
+{% block content %}
+<script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+{{ form.media }}
+
+<div class="content-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search-result">
+            <div class="alert alert-yellow" role="alert">
+              <h4>{{ publication.titre }}</h4>           
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+<div class="row">
+  <div class="col-12">
+    <!-- Recently Favorited -->
+    <div class="widget dashboard-container my-adslist">
+      <h3 class="widget-header"></h3>
+    </div>
+
+	<table id="table1" class="table table-bordered table-striped" cellspacing="0" width="100%">
+	   <tbody>
+        <tr>
+          <td width="300">
+            {% if publication.photo %}
+              <img class="img-rectangle" src="{{ MEDIA_URL }}{{ publication.photo.url }}" width="100%" height="auto" alt="page de garde">
+            {% endif %}                
+          </td>
+          <td>
+          	<div class="card-body">
+              <div class="card-text"><b>Type : </b><span class="badge rounded-pill bg-success">{{ publication.type_publication }}</span></div>
+            	<div class="card-text"><b>Auteur : </b><span class="badge rounded-pill bg-success">{{ publication.auteurs.all }}</span></div>
+            	<div class="card-text"><b>Discipline : </b><span class="badge rounded-pill bg-success">{{ publication.discipline }}</span></div>
+            	<div class="card-text"><b>Côte : </b><span class="badge rounded-pill bg-success">{{ publication.cote }}</span></div>
+            	<div class="card-text"><b>Format(s) électronique(s) : </b><span class="badge rounded-pill bg-success">{{ publication.format_electronique }}</span>
+              
+                {% if publication.format_electronique %}              
+                {% if request.user.is_superuser or request.user.abonne %}
+                  <a href="{% url 'publication:telechargement' %}" target="_blank" id='btn_download'><b>Téléchargez le format</b></a>
+                  <select id='pub_download'>
+                    {% for i in publication.format_electronique %} 
+                      <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                  </select>
+                {% endif %}
+              {% endif %}
+              
+              </div>
+            	<div class="card-text"><b>Année de soutenance : </b><span class="badge rounded-pill bg-success">{{ publication.annee }}</span></div>
+           		<hr>
+				<b>Résumé</b> : <span>{{ publication.resume|truncatewords:200 }}</span>  
+			</div>          
+          </td>
+         </tr>
+	   </tbody> 
+	 </table>
+	  <a href="{% url 'publication:traitement' %}"><button type="button" class="btn btn-success btn-sm">Voir les autres publications</button> </a>
+      <hr>
+    </div>  
+  </div>
+ </div>
+</div>
+
+
+
+
+
+<style type="text/css">
+.zoom {
+  width: 320px;
+  height: 240px;
+  }
+  .photo {
+  width: 100%;
+  height: 100%;
+  }
+  .photo img {
+  /* La transition s'applique à la fois sur la largeur et la hauteur, avec une durée d'une seconde. */
+  -webkit-transition: all 1s ease; /* Safari et Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* Internet Explorer 9 */
+  -o-transition: all 1s ease; /* Opera */
+  transition: all 1s ease;
+  }
+  .photo:hover img {
+  /* L'image est grossie de 25% */
+  -webkit-transform:scale(1.25); /* Safari et Chrome */
+  -moz-transform:scale(1.25); /* Firefox */
+  -ms-transform:scale(1.25); /* Internet Explorer 9 */
+  -o-transform:scale(1.25); /* Opera */
+  transform:scale(1.25);
+  }
+</style>
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.css' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+<script type="text/javascript">
+  $("#btn_download").click(function(e){
+     e.preventDefault()
+     var code_publication = "{{ publication.id }}";
+     var type_publication = "{{ publication.type_publication }}";
+     var format = $("#pub_download").val();
+     var url = "{% url 'publication:telechargement' %}";
+     $.ajax({
+       url: url,
+       data: {
+        'format': format, 'type_publication': type_publication, 'code_publication': code_publication,
+       },
+       success: function (data) {
+       
+       }
+     });
+  });
+ </script>
+
+
+{% endblock content %}

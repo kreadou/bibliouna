@@ -1,0 +1,450 @@
+{% load static %}
+
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="search-result bg-gray">
+        <div class="alert alert-dark" role="alert">
+          <h5>{{ publication_list.count }} Resultat(s) pour {{ element_selectionne }}</h5>           
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title m-0">Featured</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Special title treatment</h6>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+
+        <div class="card card-primary card-outline">
+          <div class="card-header">
+            <h5 class="card-title m-0">Featured</h5>
+          </div>
+          <div class="card-body">
+            <div class="filter-content">
+              <div class="card-body">
+                <form>
+                  <label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                      Mersedes Benz
+                    </span>
+                  </label> <!-- form-check.// -->
+                  <label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                      Nissan Altima
+                    </span>
+                  </label>  <!-- form-check.// -->
+                  <label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                      Another Brand
+                    </span>
+                  </label>  <!-- form-check.// -->
+                </form>
+              </div> <!-- card-body.// -->
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-primary card-outline">
+          <div class="card-header">
+            <h5 class="card-title m-0">Featured</h5>
+          </div>
+          <div class="card-body">
+            <div class="filter-content">
+              <div class="card-body">
+                <form>
+                  <label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                      Mersedes Benz
+                    </span>
+                  </label> <!-- form-check.// -->
+                  <label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                      Nissan Altima
+                    </span>
+                  </label>  <!-- form-check.// -->
+                  <label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                      Another Brand
+                    </span>
+                  </label>  <!-- form-check.// -->
+                </form>
+              </div> <!-- card-body.// -->
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-primary card-outline">
+          <div class="card-header">
+            <h5 class="card-title m-0">Featured</h5>
+          </div>
+          <div class="card-body">
+            <div class="filter-content">
+              <div class="card-body">
+                <form>
+                  <label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                      Mersedes Benz
+                    </span>
+                  </label> <!-- form-check.// -->
+                  <label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                      Nissan Altima
+                    </span>
+                  </label>  <!-- form-check.// -->
+                  <label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                      Another Brand
+                    </span>
+                  </label>  <!-- form-check.// -->
+                </form>
+              </div> <!-- card-body.// -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+
+        {% for i in punlication_list %}
+          <div class="card mb-3" style="max-width: 100%px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img width="100%" height="100%" src="{% static 'images/logo.png' %}">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h3 class="card-title">Card title</h3>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  <span class="badge bg-warning text-dark">Warning</span>
+                  <span class="badge rounded-pill bg-primary">Primary</span>
+                  <span class="badge rounded-pill bg-secondary">Secondary</span>
+                  <span class="badge rounded-pill bg-success">Success</span>
+                  <span class="badge rounded-pill bg-danger">Danger</span>
+                  <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                  <span class="badge rounded-pill bg-info text-dark">Info</span>
+                  <span class="badge rounded-pill bg-light text-dark">Light</span>
+                  <span class="badge rounded-pill bg-dark">Dark</span>   
+                  
+                  <button type="button" class="btn btn-warning btn-sm">Small button</button>
+                  <button type="button" class="btn btn-secondary btn-sm">Small button</button>       
+                </div>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+
+          {% endfor %}
+
+
+        <div class="card mb-3" style="max-width: 100%px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img width="100%" height="100%" src="{% static 'images/logo.png' %}">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title">Card title</h3>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <span class="badge bg-warning text-dark">Warning</span>
+                <span class="badge rounded-pill bg-primary">Primary</span>
+                <span class="badge rounded-pill bg-secondary">Secondary</span>
+                <span class="badge rounded-pill bg-success">Success</span>
+                <span class="badge rounded-pill bg-danger">Danger</span>
+                <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                <span class="badge rounded-pill bg-info text-dark">Info</span>
+                <span class="badge rounded-pill bg-light text-dark">Light</span>
+                <span class="badge rounded-pill bg-dark">Dark</span>   
+                
+                <button type="button" class="btn btn-warning btn-sm">Small button</button>
+                <button type="button" class="btn btn-secondary btn-sm">Small button</button>       
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+                <div class="card mb-3" style="max-width: 100%px;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img width="100%" height="100%" src="{% static 'images/logo.png' %}">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h3 class="card-title">Card title</h3>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <span class="badge bg-warning text-dark">Warning</span>
+                <span class="badge rounded-pill bg-primary">Primary</span>
+                <span class="badge rounded-pill bg-secondary">Secondary</span>
+                <span class="badge rounded-pill bg-success">Success</span>
+                <span class="badge rounded-pill bg-danger">Danger</span>
+                <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                <span class="badge rounded-pill bg-info text-dark">Info</span>
+                <span class="badge rounded-pill bg-light text-dark">Light</span>
+                <span class="badge rounded-pill bg-dark">Dark</span>   
+                
+                <button type="button" class="btn btn-warning btn-sm">Small button</button>
+                <button type="button" class="btn btn-secondary btn-sm">Small button</button>       
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Include the above in your HEAD tag -->
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+
+
+{% comment %}
+
+<div class="container">
+<br>  <p class="text-center">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com</a></p>
+<hr>
+
+<div class="row">
+  <aside class="col-sm-3">
+<p>Filter 1</p>
+
+
+<div class="card">
+  <article class="card-group-item">
+    <header class="card-header">
+      <h6 class="title">Brands </h6>
+    </header>
+    <div class="filter-content">
+      <div class="card-body">
+      <form>
+        <label class="form-check">
+          <input class="form-check-input" type="checkbox" value="">
+          <span class="form-check-label">
+            Mersedes Benz
+          </span>
+        </label> <!-- form-check.// -->
+        <label class="form-check">
+          <input class="form-check-input" type="checkbox" value="">
+          <span class="form-check-label">
+            Nissan Altima
+          </span>
+        </label>  <!-- form-check.// -->
+        <label class="form-check">
+          <input class="form-check-input" type="checkbox" value="">
+          <span class="form-check-label">
+            Another Brand
+          </span>
+        </label>  <!-- form-check.// -->
+      </form>
+
+      </div> <!-- card-body.// -->
+    </div>
+  </article> <!-- card-group-item.// -->
+  
+  <article class="card-group-item">
+    <header class="card-header">
+      <h6 class="title">Choose type </h6>
+    </header>
+    <div class="filter-content">
+      <div class="card-body">
+      <label class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadio" value="">
+        <span class="form-check-label">
+          First hand items
+        </span>
+      </label>
+      <label class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadio" value="">
+        <span class="form-check-label">
+          Brand new items
+        </span>
+      </label>
+      <label class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadio" value="">
+        <span class="form-check-label">
+          Some other option
+        </span>
+      </label>
+      </div> <!-- card-body.// -->
+    </div>
+  </article> <!-- card-group-item.// -->
+</div> <!-- card.// -->
+
+
+
+
+  </aside> <!-- col.// -->
+  <aside class="col-sm-3">
+<p>Filter 2</p>
+
+
+<div class="card">
+  <article class="card-group-item">
+    <header class="card-header"><h6 class="title">Similar category </h6></header>
+    <div class="filter-content">
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item">Cras justo odio <span class="float-right badge badge-light round">142</span> </a>
+        <a href="#" class="list-group-item">Dapibus ac facilisis  <span class="float-right badge badge-light round">3</span>  </a>
+        <a href="#" class="list-group-item">Morbi leo risus <span class="float-right badge badge-light round">32</span>  </a>
+        <a href="#" class="list-group-item">Another item <span class="float-right badge badge-light round">12</span>  </a>
+      </div>  <!-- list-group .// -->
+    </div>
+  </article> <!-- card-group-item.// -->
+  <article class="card-group-item">
+    <header class="card-header"><h6 class="title">Color check</h6></header>
+    <div class="filter-content">
+      <div class="card-body">
+        <label class="btn btn-danger">
+          <input class="" type="checkbox" name="myradio" value="">
+          <span class="form-check-label">Red</span>
+        </label>
+        <label class="btn btn-success">
+          <input class="" type="checkbox" name="myradio" value="">
+          <span class="form-check-label">Green</span>
+        </label>
+        <label class="btn btn-primary">
+          <input class="" type="checkbox" name="myradio" value="">
+          <span class="form-check-label">Blue</span>
+        </label>
+      </div> <!-- card-body.// -->
+    </div>
+  </article> <!-- card-group-item.// -->
+</div> <!-- card.// -->
+
+
+
+  </aside> <!-- col.// -->
+  <aside class="col-sm-4">
+<p>Filter  3</p>
+
+
+
+<div class="card">
+  <article class="card-group-item">
+    <header class="card-header">
+      <h6 class="title">Range input </h6>
+    </header>
+    <div class="filter-content">
+      <div class="card-body">
+      <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Min</label>
+        <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
+      </div>
+      <div class="form-group col-md-6 text-right">
+        <label>Max</label>
+        <input type="number" class="form-control" placeholder="$1,0000">
+      </div>
+      </div>
+      </div> <!-- card-body.// -->
+    </div>
+  </article> <!-- card-group-item.// -->
+  <article class="card-group-item">
+    <header class="card-header">
+      <h6 class="title">Selection </h6>
+    </header>
+    <div class="filter-content">
+      <div class="card-body">
+        <div class="custom-control custom-checkbox">
+          <span class="float-right badge badge-light round">52</span>
+            <input type="checkbox" class="custom-control-input" id="Check1">
+            <label class="custom-control-label" for="Check1">Samsung</label>
+        </div> <!-- form-check.// -->
+
+        <div class="custom-control custom-checkbox">
+          <span class="float-right badge badge-light round">132</span>
+            <input type="checkbox" class="custom-control-input" id="Check2">
+          <label class="custom-control-label" for="Check2">Black berry</label>
+        </div> <!-- form-check.// -->
+
+        <div class="custom-control custom-checkbox">
+          <span class="float-right badge badge-light round">17</span>
+            <input type="checkbox" class="custom-control-input" id="Check3">
+            <label class="custom-control-label" for="Check3">Samsung</label>
+        </div> <!-- form-check.// -->
+
+        <div class="custom-control custom-checkbox">
+          <span class="float-right badge badge-light round">7</span>
+            <input type="checkbox" class="custom-control-input" id="Check4">
+            <label class="custom-control-label" for="Check4">Other Brand</label>
+        </div> <!-- form-check.// -->
+      </div> <!-- card-body.// -->
+    </div>
+  </article> <!-- card-group-item.// -->
+</div> <!-- card.// -->
+
+
+
+  </aside> <!-- col.// -->
+</div> <!-- row.// -->
+
+</div> 
+<!--container end.//-->
+
+
+{% endcomment %}
+
+
+<br><br>
+<article class="bg-secondary mb-3">  
+<div class="card-body text-center">
+    <h4 class="text-white">HTML UI KIT <br> Ready to use Bootstrap 4 components and templates </h4>
+<p class="h5 text-white"> for Ecommerce, marketplace, booking websites 
+and product landing pages</p>   <br>
+<p><a class="btn btn-warning" target="_blank" href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com  
+ <i class="fa fa-window-restore "></i></a></p>
+</div>
+<br><br>
+</article>

@@ -1,0 +1,9 @@
+{% extends "accueil/base.html" %}
+{% load static %}
+
+{% block carousel %}
+{% endblock carousel %}
+
+{% block content %}
+  <embed src="{% static 'accueil/pdf/reglement_interieur.pdf' %}" width="100%" height="700"  type='application/pdf'/>
+{% endblock content %}

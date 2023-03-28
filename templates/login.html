@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WAD | UNA</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="{% static 'administration/css/bootstrap.min.css' %}">
+    <!--  Font Awesome -->
+    <link rel="stylesheet" href="{% static 'administration/css/font-awesome.min.css' %}">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="{% static 'administration/css/ionicons.min.css' %}">
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="{% static 'administration/css/AdminLTE.min.css' %}">
+    <!-- <link rel="stylesheet" href="{% static "fondecran.css" %}">-->
+  </head>
+
+  <body>
+     <!-- Main content -->
+      <section class="content">
+        <!-- Info boxes -->
+          
+<!-- Header Start -->
+        <div class="row" style="background-color:green; color:white; font-size: 2em; border-top:5px solid orange;">
+            <p ><center><b>BIBLIOTHEQUE NUMERIQUE DE L'UNIVERSITE NANGUI ABROGOUA DE CÔTE D'IVOIRE</b></center></p>
+        </div>
+
+        <div class="row">
+          <div class="box-body">
+              <form method="post" action="{% url 'parametre:login' %}">{% csrf_token %}
+                  <div class="col-md-4 col-md-offset-4">
+                      <div class="form-group">
+                          <table class="table table-bordered">
+                              <tr>
+                                <td>{{ form.username.label_tag }}</td>
+                                <td>{{ form.username }}</td>
+                              </tr>
+                              <tr>
+                                <td>{{ form.password.label_tag }}</td>
+                                <td>{{ form.password }}</td>
+                              </tr>
+                          </table>
+                          <p class="bs-component">
+                            <button type="submit" class="btn btn-success btn-block btn-flat">Login</button>
+                          </p>
+                            <input type="hidden" name="next" value="{{ next }}" />
+                      </div>
+                    </div>
+              </form>
+            </div>
+          </div>
+        <center><img width="95%" height="100%" src="{% static 'images/salle.png' %}">
+    </section>
+  </body>
+</html>

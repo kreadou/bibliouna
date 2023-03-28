@@ -1,0 +1,28 @@
+{% extends 'abonne/base.html' %}
+{% load static %}
+
+{% for i in abonnement_list %}
+  <div class="card mb-3" style="max-width: 100%px;">
+    <div class="row">
+      <div class="col-md-3">
+        {% if i.photo %}
+          <img class="img-rectangle" src="{{ MEDIA_URL }}{{ i.photo.url }}" width="100%" height="auto" alt="page de garde">
+        {% endif %}
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">{{ i.titre }}</h5>
+          <div class="card-text"></div>
+          <div class="card-text"><b>Auteur : </b><span class="badge rounded-pill bg-success">{{ i.auteur }}</span></div>
+          <div class="card-text"><b>Spécialité : </b><span class="badge rounded-pill bg-success">{{ i.specialite }}</span></div>
+          <div class="card-text"><b>Côte : </b><span class="badge rounded-pill bg-success">{{ i.cote }}</span></div>
+          <div class="card-text"><b>Format(s) électronique(s) : </b><span class="badge rounded-pill bg-success">{{ i.format_electronique }}</span></div>
+          <div class="card-text"><b>Date de soutenance : </b><span class="badge rounded-pill bg-success">{{ i.date_soutenance }}</span></div>
+          <button type="button" class="btn btn-success btn-sm pull-right">{{ i.type_publication|title }}, voir plus</button>
+        </div>
+      </div>
+    </div>
+    <span id="id_nombre_publication" style="display: none;">{{ publication_list.count }}</span>
+  </div>
+{% endfor %}
+<hr>

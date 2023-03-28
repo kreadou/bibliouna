@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extrahead %}   {# Extra Resources Start #}
+{{ form.media }}        {# Form required JS and CSS #}
+{% endblock %}          {# Extra Resources End #}
+
+{% block content %}
+ <!-- Content Header (Page header) -->
+<section class="content-header">
+ <h1><center>Ajout d'un Evenèment</center></h1>
+   <ol class="breadcrumb">
+   </ol>
+</section>
+
+<section class="content">
+  <div class="row">
+    <form method="post" action="{% url 'parametre:article_creer' %}" enctype="multipart/form-data"> {% csrf_token %}
+    <div class="col-xs-8 col-md-offset-2">
+      <div class="box box-warning">
+        <div class="box-header"><h3></h3></div>
+        <div class="box-body">
+          {{ form.media }}
+          <div class="form-row">
+            <div class="form-group col-md-12 mb-0">
+                {{ form|crispy }}
+            </div> 
+           </div>  
+         </div>
+      </div>
+      <button class="btn btn-primary btn-sm" name="submit" type="submit">Enregistrer</button>
+    </div>
+   </form>
+ </div>   
+</section>
+
+{% endblock %} 

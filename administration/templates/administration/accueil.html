@@ -1,0 +1,357 @@
+{% extends "administration/base.html" %}
+{% load static %}
+{#% load has_group %#}
+      
+
+{% block aside %}
+  <!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+  <!-- Sidebar user panel -->
+    <div>
+      <img class="img-rectangle" src="{% static 'images/logo.png' %}"  width="100%" alt="User Image">
+    </div>
+    <div>
+      <img class="img-rectangle" src="{% static 'images/una1.jpeg' %}"  width="100%" alt="User Image">
+    </div>
+    <div>
+      <img class="img-rectangle" src="{% static 'images/3arbres.jpeg' %}"  width="100%" alt="User Image">
+    </div>
+    <div>
+      <img class="img-rectangle" src="{% static 'images/una2.jpeg' %}"  width="100%" alt="User Image">
+    </div>
+  </section>
+  <!-- /.sidebar -->
+  </aside>
+{% endblock aside %}
+
+{% block content %}
+  <div class="box-body">
+    <div class="row">
+
+      {#% if perms.publication.add_ouvrage %#}
+        <a href="{% url 'administration:ouvrage_lister' %}">
+      {#% endif %#} 
+      <div class="col-md-4">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua">
+              <h3 class="widget-user-username"><b>MONOGRAPHIES</b></h3>
+              <h5 class="widget-user-desc"></h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-rectangle" src="{% static 'images/logo.png' %}" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+      </div>
+      {#% if perms.publication.add_ouvrage %#}
+        </a>
+      {#% endif %#}
+
+      {#% if perms.publication.add_soutenance %#}
+        <a href="{% url 'administration:these_lister' %}">
+      {#% endif %#}
+       <div class="col-md-4">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-green">
+              <h3 class="widget-user-username"><b>THESES</b></h3>
+              <h5 class="widget-user-desc"></h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-rectangle" src="{% static 'images/logo.png' %}" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        {#% if perms.publication.add_soutenance %#}
+          </a>
+        {#% endif %#}
+
+        {#% if perms.publication.add_soutenance %#}
+          <a href="{% url 'administration:memoire_lister' %}">
+        {#% endif %#}
+
+       <div class="col-md-4">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-blue">
+              <h3 class="widget-user-username"><b>MEMOIRES</b></h3>
+              <h5 class="widget-user-desc"></h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-rectangle" src="{% static 'images/logo.png' %}" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        {#% if perms.publication.add_soutenance %#}
+          </a>
+        {#% endif %#}
+
+
+        {#% if perms.publication.add_soutenance %#}
+          <a href="{% url 'administration:article_lister' %}">
+        {#% endif %#}
+
+       <div class="col-md-4">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-orange">
+              <h3 class="widget-user-username"><b>ARTICLES</b></h3>
+              <h5 class="widget-user-desc"></h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-rectangle" src="{% static 'images/logo.png' %}" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        {#% if perms.publication.add_soutenance %#}
+          </a>
+        {#% endif %#}
+
+
+
+        {% if user.is_superuser and user.username == 'kre' %} 
+          <a href="{#% url 'administration:article_lister' %#}">
+        {% endif %}
+
+       <div class="col-md-4">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-gray">
+              <h3 class="widget-user-username"><b></b></h3>
+              <h5 class="widget-user-desc"></h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-rectangle" src="{% static 'images/logo.png' %}" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        {% if user.is_superuser and user.username == 'kre' %}
+          </a>
+        {% endif %}
+
+
+        {% if user.is_superuser and user.username == 'kre' %}
+          <a href="{#% url 'administration:article_lister' %#}">
+        {% endif %}
+
+       <div class="col-md-4">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-gray">
+              <h3 class="widget-user-username"><b></b></h3>
+              <h5 class="widget-user-desc"></h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-rectangle" src="{% static 'images/logo.png' %}" alt="User Avatar">
+            </div>
+            <div class="box-footer">
+              <div class="row">
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                  <div class="description-block">
+                    <h5 class="description-header"></h5>
+                    <span class="description-text"></span>
+                  </div>
+                  <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
+        {% if user.is_superuser and user.username == 'kre' %}
+          </a>
+        {% endif %}
+    </div>
+
+    <div class="row">  
+      <div class="col-xs-3">
+        <img class="img-rectangle" src="{% static 'images/entreuna.jpeg' %}"  width="100%" alt="User Image">
+      </div>
+      <div class="col-xs-3">
+        <img class="img-rectangle" src="{% static 'images/3arbres.jpeg' %}"  width="100%" alt="User Image">
+      </div>
+      <div class="col-xs-3">
+        <img class="img-rectangle" src="{% static 'images/una1.jpeg' %}"  width="100%" alt="User Image">
+      </div>
+      <div class="col-xs-3">
+        <img class="img-rectangle" src="{% static 'images/una2.jpeg' %}"  width="100%" alt="User Image">
+      </div>
+    </div>  
+  </div>  
+{% endblock content %}

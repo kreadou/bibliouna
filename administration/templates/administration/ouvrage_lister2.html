@@ -1,0 +1,113 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block entete %}
+<div class="row">
+  <div class="col-lg-4">
+    <h1 class="m-0 text-dark"><small>Titre</small></h1>
+  </div><!-- /.col -->
+  <div class="col-lg-8">
+    <h2><font color="grey"></font>Formules</h2>
+  </div><!-- /.col -->
+</div><!-- /.row -->
+{% endblock entete %}
+
+
+
+{% block content %}
+
+<div class="col-md-9">
+
+    {% for i in ouvrage_list %}
+      <div class="card mb-3" style="max-width: 50% max-height:50%">
+        <div class="row g-0">
+          <div class="col-md-4">
+          {% if i.photo %}
+            <img class="img-rectangle" src="{{ MEDIA_URL }}{{ i.photo.url }}" width="50%" height="50%">
+          {% endif %}
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title">{{ i.titre }}</h3>
+              
+              <h6 class="card-text">Hello coder’s, searches as per you model attributes.</6><hr>
+              <h6 class="card-text">Sujet</6>
+              <h5 class="card-text">Année</5>
+              <h5 class="card-text">Code</5>
+              <h5 class="card-text">Auteur</5>
+                                                              
+              {% comment %}
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <span class="badge bg-warning text-dark">Warning</span>
+              <span class="badge rounded-pill bg-primary">{{ i.auteurs.all|join:", " }}</span>
+              <span class="badge rounded-pill bg-secondary">Secondary</span>
+              <span class="badge rounded-pill bg-success">Success</span>
+              <span class="badge rounded-pill bg-danger">Danger</span>
+              <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+              <span class="badge rounded-pill bg-info text-dark">Info</span>
+              <span class="badge rounded-pill bg-light text-dark">Light</span>
+              <span class="badge rounded-pill bg-dark">Dark</span>   
+              <button type="button" class="btn btn-warning btn-sm">Small button</button>
+              {% endcomment %}
+              <button type="button" class="btn btn-secondary btn-sm">Voir le détail</button>       
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}  
+
+</div>
+
+<script src="{% static 'administration/js/jquery-3.5.1.js' %}"></script>
+<script src="{% static 'administration/js/jquery.dataTables.min.js' %}"></script>
+
+<style type="text/css">
+  th, td {
+    white-space: wrap;
+}
+</style>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#table1').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      "lengthMenu"  : [[15, 50, -1], [15, 50, "All"]],
+      'searching'   : true,
+      'ordering'    : false,
+      'info'        : true,
+      'autoWidth'   : true,
+      'scrollX'     : true,
+      'scrollY'     : '400',
+      'scrollCollapse' : true,  
+
+      dom: 'Bfrtip',
+            buttons: ['print', 'excel', 'pdf', 'csv'
+
+      ],
+
+      "language": {
+        "sProcessing": "Traitement en cours ...",
+        "sLengthMenu": "Afficher _MENU_ lignes",
+        "sZeroRecords": "Aucun résultat trouvé",
+        "sEmptyTable": "Aucune donnée disponible",
+        "sInfo": "Lignes _START_ à _END_ sur _TOTAL_",
+        "sInfoEmpty": "Aucune ligne affichée",
+        "sInfoFiltered": "(Filtrer un maximum de_MAX_)",
+        "sInfoPostFix": "",
+        "sSearch": "Chercher:",
+        "sUrl": "",
+        "sInfoThousands": ",",
+        "sLoadingRecords": "Chargement...",
+        "oPaginate": {
+          "sFirst": "Premier", "sLast": "Dernier", "sNext": "Suivant", "sPrevious": "Précédent"
+      },
+        "oAria": {
+          "sSortAscending": ": Trier par ordre croissant", "sSortDescending": ": Trier par ordre décroissant"
+      }
+    }
+  });
+});    
+</script>
+{% endblock content %}

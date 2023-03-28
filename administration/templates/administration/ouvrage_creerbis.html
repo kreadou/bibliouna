@@ -1,0 +1,180 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+ <!-- Content Header (Page header) -->
+<section class="content-header">
+ <h1><center>Ajout d'une Monographie</center></h1>
+   <ol class="breadcrumb">
+   </ol>
+</section>
+
+<section class="content">
+  <div class="row">
+    <form method="post" action="{% url 'administration:ouvrage_creer' %}" enctype="multipart/form-data"> {% csrf_token %}
+    <div class="col-xs-8 col-md-offset-2">
+      <div class="box box-warning">
+        <div class="box-header"><h3></h3></div>
+        <div class="box-body">
+          <div class="form-row">
+            <div class="form-group col-md-12 mb-0">
+                {{ form.titre|as_crispy_field }}
+            </div> 
+            <div class="form-group col-md-12 mb-0">
+                {{ form.titre_parallele|as_crispy_field }}
+            </div>          
+            <div class="form-group col-md-12 mb-0">
+                {{ form.sous_titre|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-12 mb-0">
+                {{ form.annee|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-12 mb-0">
+                {{ form.issn|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-12 mb-0">
+                {{ form.cote|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-12 mb-0">
+                {{ form.note|as_crispy_field }}
+            </div>
+
+            <div class="form-group col-md-12 mb-0">
+                {{ form.resume|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-12 mb-0">
+                {{ form.discipline|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+                {{ form.langue_publication|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6 mb-0">
+                {{ form.langue_originale|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-12 mb-0">
+                {{ form.url_associe|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-12 mb-0">
+                {{ form.format_electronique|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-12 mb-0">
+                {{ form.type_publication|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-11 mb-0">
+                {{ form.editeurs|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-1 mb-0">
+               <a href="editeur_creer_popup" id="add_editeur" onclick="return showAddPopup(this);">
+               <span class="btn btn-xs btn-primary">+</span></a>
+            </div>
+            <div class="form-group col-md-11 mb-0">
+                {{ form.auteurs|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-1 mb-0">
+               <a href="auteur_creer_popup" id="add_auteur" onclick="return showAddPopup(this);">
+               <span class="btn btn-xs btn-primary">+</span></a>
+            </div>
+            <div class="form-group col-md-11 mb-0">
+                {{ form.motcles|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-1 mb-0">
+              <a href="motcle_creer_popup" id="add_motcle" onclick="return showAddPopup(this);"><span class="btn btn-xs btn-primary">+</span></a>             </div>
+            <div class="form-group col-md-12 mb-0">
+                {{ form.photo|as_crispy_field }}
+            </div>            
+          </div>  
+          </div>
+      </div>
+      <button class="btn btn-primary btn-sm" name="submit" type="submit">Enregistrer</button>
+    </div>
+   </form>
+ </div>   
+</section>
+
+<script type="text/javascript">
+  function showEditPopup(url) {
+    var win = window.open(url, "Edit", 
+        'height=500,width=800,resizable=yes,scrollbars=yes');
+    return false;
+}
+
+  function showAddPopup(triggeringLink) {
+      var name = triggeringLink.id.replace(/^add_/, '');
+      href = triggeringLink.href;
+      var win = window.open(href, name, 'height=600, width=500, resizable=no,scrollbars=yes');
+      win.moveTo((screen.width)/2-350,(screen.height)/2-300);  /* ligne changée ICI */
+      win.focus();
+      return false;
+  }
+
+  function closePopup(win, newID, newRepr, id) {
+    $("#id_auteur").append('<option value=' + newID + '>' + newRepr + '</option>');
+      
+                /*var option = document.createElement("option");
+                option.text = "Text";
+                option.value = "myvalue";
+                var select = document.getElementById("id-to-my-select-box");
+                select.appendChild(option);
+
+                /*alert(newRepr);
+                alert(id);
+                
+                <option value="1">one</option> 
+                $(id).refresh();
+                this.$('select#id_author').append('<option>newRepr</option>');*/
+                win.close();
+            }
+
+
+  function dismissAddAnotherPopup(win, newId, newRepr, code) {
+            // newId and newRepr are expected to have previously been escaped by
+            /*newId = html_unescape(newId);
+            newRepr = html_unescape(newRepr);
+            var name = windowname_to_id(win.name);*/
+            if (code==0) {
+              var elem = document.getElementById("id_auteurs");
+              } else if (code==1){
+                var elem = document.getElementById("id_editeurs");
+             } else if (code==2) {
+                  var elem = document.getElementById("id_motcles");  
+            }
+            alert(code);
+            if (elem) {
+                if (elem.nodeName == 'SELECT') {
+                    var o = new Option(newRepr, newId);
+                    elem.options[elem.options.length] = o;
+                    o.selected = true;
+                }
+            } else {
+                console.log("Could not get input id for win " + name);
+            }
+            win.close();
+        }
+
+            function html_unescape(text) {
+             // Unescape a string that was escaped using django.utils.html.escape.
+                text = text.replace(/</g, '');
+                text = text.replace(/"/g, '"');
+                text = text.replace(/'/g, "'");
+                text = text.replace(/&/g, '&');
+                return text;
+            }
+
+            // IE doesn't accept periods or dashes in the window name, but the element IDs
+            // we use to generate popup window names may contain them, therefore we map them
+            // to allowed characters in a reversible way so that we can locate the correct
+            // element when the popup window is dismissed.
+            function id_to_windowname(text) {
+                text = text.replace(/\./g, '__dot__');
+                text = text.replace(/\-/g, '__dash__');
+                text = text.replace(/\[/g, '__braceleft__');
+                text = text.replace(/\]/g, '__braceright__');
+                return text;
+            } 
+
+            function windowname_to_id(text) {
+                return text;
+            }
+  </script>
+{% endblock %} 

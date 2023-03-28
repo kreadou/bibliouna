@@ -1,0 +1,61 @@
+{% load static %}
+
+<style type="text/css">
+  .mon_logo
+  {
+    background-color: maroon;
+    /*border: 3px solid orange;*/    
+    position: absolute;
+    left: 1.2%;
+    top: 70px;
+ }
+</style>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html"><span>BIBLIO</span>UNA</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="#" class="mon_logo"><img src="{% static 'publication/assets/img/logo.png' %}" alt="" class="img-fluid"></a>
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a href="{% url 'galerie:index' %}" class="active">galerie</a></li>
+
+          <li class="dropdown"><a href="#"><span>PRESENTATION</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="{#% url 'publication:presentation' %#}">Présentation</a></li>
+              <li><a href="{#% url 'publication:charte_bon_usage' %#}">Charte de bon usage</a></li>
+              <li><a href="{#% url 'publication:reglement_interieur' %#}">Règlement intérieur</a></li>
+            </ul>
+          </li>
+
+          <li><a href="{#% url 'actualité:index' %#}">Actualités</a></li>
+          <li><a href="{#% url 'galerie:index' %#}">Galerie</a></li>
+          
+          <li class="dropdown"><a href="{#% url 'administration:index' %#}"><span>Administration</span><i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="{#% url 'actualite:evenement_lister' %#}">Evènements</a></li>
+              <li><a href="{#% url 'actualite:evenement_creer' %#}">Créer un Evènement</a></li>
+              <li><a href="{#% url 'parametre:partenaire_lister' %#}">Partenaires</a></li>
+              <li><a href="{#% url 'parametre:contact_creer' %#}">Contacts</a></li>
+              <li><a href="{#% url 'parametre:contact_lister' %#}">Liste de contacts</a></li>
+              <li><a href="{#% url 'publication:reglement_interieur' %#}">Personnel</a></li>
+            </ul>
+          </li>
+          <li><a href="{% url 'galerie:contact' %}">Contact</a></li>
+        </ul>
+        
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <div class="header-social-links d-flex">
+        <a href="#" class="twitter"><i class="bu bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bu bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bu bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bu bi-linkedin"></i></i></a>
+      </div>
+
+    </div>
+  </header><!-- End Header -->

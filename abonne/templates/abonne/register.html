@@ -1,0 +1,38 @@
+{% extends "abonne/base.html" %}   
+{% load static %}   
+{% load crispy_forms_tags %}         
+
+{% block header %}
+  {% include 'accueil/header.html' %}
+ <img src="{% static 'publication/assets/img/slide/salle.png' %}" width="100%" alt=""> 
+{% endblock header %}
+
+{% block search %}
+{% endblock %}
+
+{% block footer %}
+ {% include "footer.html" %}
+{% endblock footer %}
+
+
+{% block content %} 
+<h3><center> Inscription à la Bibliothèque</center></h3>
+<div class="container py-5" style="border-bottom:5px solid #ED7211; border-top:5px solid #ED7211";>
+  <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6"> 
+        <form method="POST">
+          {% csrf_token %}
+          {{ register_form|crispy }}    
+
+          {{ form1 |crispy }}  
+          <br>               
+          <button class="btn btn-xs btn-success" type="submit"> Je m'inscris</button>
+        </form>
+        <p class="text-center">Si vous avez déjà un compte, <a href="{% url 'abonne:login' %}"> connectez-vous</a></p>
+      </div>
+      <div class="col-md-3">
+      </div>
+</div>
+{% endblock %}

@@ -1,0 +1,335 @@
+{% extends 'publication/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load urls_tags %}
+
+
+{% block header %}
+  {% include 'accueil/header.html' %}
+
+ <img src="{% static 'publication/assets/img/slide/salle.png' %}" width="100%" alt=""> 
+{% endblock header %}
+
+{% block carousel %}
+{% endblock carousel %}
+
+{% block footer %}
+ {% include "footer.html" %}
+{% endblock footer %}
+
+{% block search %}
+<style>
+.search-sec{
+    background-color:LightGray; padding: 0.2rem;
+}
+
+.search-slt{
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+
+.wrn-btn{
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+
+</style>
+
+<section class="search-sec">
+  <div class="container">
+    <form method="GET" action=".">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-2 col-md-0 col-sm-12 p-0">
+              {{ form.type_publication|as_crispy_field }}
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-12 p-0">
+              {{ form.categorie|as_crispy_field }}
+            </div>
+            <div class="col-lg-6 col-md-3 col-sm-12 p-0">
+              {{ form.texte|as_crispy_field }}
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-12 p-0">
+             <button type="submit" class="btn btn-success" id="btn_rechercher">  Rechercher</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-dark" role="alert" id="nombre_publication">
+        <b>
+          {% if publication_list.count %}
+            {{ publication_list.count }} Résultat(s) pour {{ element_selectionne }}
+          {% else %}
+            Aucun résultat pour {{ element_selectionne }}
+          {% endif %}
+        </b>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-2">
+          {% comment %}
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title m-0">Thèse</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Entomologie</h6>
+                <p class="card-text"></p>
+                <img class="img-rectangle" src="{% static 'images/arbre.jpeg' %}" width="100%" height="auto" alt="image">
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title m-0">Ouvrage</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Featured</h6>
+                <p class="card-text"></p>
+                <img class="img-rectangle" src="{% static 'images/arbre.jpeg' %}" width="100%" height="auto" alt="image">
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title m-0">Mémoire</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Featured</h6>
+                <p class="card-text"></p>
+                <img class="img-rectangle" src="{% static 'images/arbre.jpeg' %}" width="100%" height="auto" alt="image">
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title m-0">Article</h5>
+            </div>
+            <div class="card-body">
+              <h6 class="card-title">Featured</h6>
+                <p class="card-text"></p>
+                <img class="img-rectangle" src="{% static 'images/arbre.jpeg' %}" width="100%" height="auto" alt="image">
+            </div>
+          </div>
+         {% endcomment %}
+        </div>
+        
+        
+        <div class="col-md-10" id="list_donnee">
+          {% for i in publications %}
+            <div class="card mb-3" style="max-width: 100%px;">
+              <div class="row">
+                <div class="col-md-3">
+                  {% if i.photo %}
+                    <img class="img-rectangle" src="{{ MEDIA_URL }}{{ i.photo.url }}" width="100%" height="auto" alt="page de garde">
+                  {% endif %}
+                </div>
+                <div class="col-md-9">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ i.titre }}</h5>
+                    <div class="card-text"></div>
+                    
+                   <div class="card-text"><b>Auteur : </b><span class="badge rounded-pill bg-success">{{ i.auteur }}</span></div>
+                   <div class="card-text"><b>Spécialité : </b><span class="badge rounded-pill bg-success">{{ i.specialite }}</span></div>
+
+                    <div class="card-text"><b>Côte : </b><span class="badge rounded-pill bg-success">{{ i.cote }}</span></div>
+                    <div class="card-text"><b>Format(s) électronique(s) : </b><span class="badge rounded-pill bg-success">{{ i.format_electronique }}</span></div>
+                    <div class="card-text"><b>Date de soutenance : </b><span class="badge rounded-pill bg-success">{{ i.date_soutenance }}</span></div>
+
+                    <a href="{% url 'publication:publication_detail' pk=i.id %}" target="_blank" style="color:#FF0000;"><span class="badge bg-warning text-dark">{{ i.type_publication|title }}, voir plus</span></a>
+
+                    {% comment %}                   
+                    <span class="badge rounded-pill bg-primary">Primary</span>
+                    <span class="badge rounded-pill bg-secondary">Secondary</span>
+                    <span class="badge rounded-pill bg-success">Success</span>
+                    <span class="badge rounded-pill bg-danger">Danger</span>
+                    <span class="badge rounded-pill bg-warning text-dark">Warning</span>
+                    <span class="badge rounded-pill bg-info text-dark">Info</span>
+                    <span class="badge rounded-pill bg-light text-dark">Light</span>
+                    <span class="badge rounded-pill bg-dark">Dark</span>   
+                    {% endcomment %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        
+        <!-- pagination starts -->
+        {% if publication_list.count %}
+          <nav aria-label="...">
+            <ul class="pagination flex-wrap justify-content-center">
+              <li class="page-item disabled">
+                {% if publications.has_previous %}
+                  <li class="page-item">
+                    <a class="page-link" href="{% my_url publications.previous_page_number 'page' request.GET.urlencode %}">⇇</a>
+                  </li>
+                {% endif %}
+                {% if publications.number > 3 %}
+                  <li class="page-item">
+                    <a class="page-link" href="{% my_url 1 'page' request.GET.urlencode %}">1</a>
+                  </li>
+                {% endif %}
+                {% if publications.number > 4 %}
+                    <li class="page-item">
+                    <span class="page-link">....</span>
+                    </li>
+                {% endif %}
+              </li>
+
+              {% for i in publications.paginator.page_range %}
+                {% if publications.number == i %}
+                  <li class="page-item active">
+                    <span class="page-link">
+                      {{ i }}
+                      <span class="sr-only"></span>
+                    </span>
+                  </li>
+                  {% elif i > publications.number|add:'-3' and i < publications.number|add:'3' %}
+                    <li class="page-item">
+                      <a class="page-link" href="{% my_url i 'page' request.GET.urlencode %}">{{ i }}</a>
+                    </li>
+                {% endif %}
+              {% endfor %}
+
+              {% if publications.has_next %}
+                {% if publications.number < publications.paginator.num_pages|add:'-3' %}
+                    <li class="page-item">
+                        <span class="page-link">....</span>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="{% my_url publications.paginator.num_pages 'page' request.GET.urlencode %}">{{ publications.paginator.num_pages }}</a>
+                    </li>
+                {% elif publications.number < publications.paginator.num_pages|add:'-2' %}
+                  <li class="page-item">
+                    <a class="page-link" href="% my_url publications.paginator.num_pages 'page' request.GET.urlencode %}">{{ publications.paginator.num_pages }}</a>
+                  </li>
+                {% endif %}  
+                <li class="page-item">
+                  <a class="page-link" href="{% my_url publications.next_page_number 'page' request.GET.urlencode %}"> ⇉</a>
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+        {% endif %}
+        <!-- pagination end -->
+      </div>
+    </div>
+  </div>
+  <br>
+
+<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+
+<script type="text/javascript">
+  /*
+  $("#btn_rechercher").click(function(e){
+    e.preventDefault()
+    var id_type_publication = $("#id_type_publication").val();
+    var id_categorie = $("#id_categorie").val();
+    var id_texte = $("#id_texte").val();
+    var page = "{{page}}";
+    var url = "{% url 'publication:traitement' %}";
+    $.ajax({
+      url: url,
+      data: {
+        'id_type_publication': id_type_publication, 'id_categorie':id_categorie, 'id_texte':id_texte, 'page':page
+      },
+      success: function (data) {
+        $("#list_donnee").html();
+        $("#list_donnee").html(data);
+        $("#nombre_publication").html($("#id_nombre_publication").text())
+      }
+    });
+  }); */
+</script>
+
+
+<script type="text/javascript">
+  /*
+  $("pe").click(function(e){
+    e.preventDefault()
+    var id_type_publication = $("#id_type_publication").val();
+    var id_categorie = $("#id_categorie").val();
+    var id_texte = $("#id_texte").val();
+    var page = "{{page}}";
+    var url = "{% url 'publication:traitement' %}";
+    $.ajax({
+      url: url,
+      data: {
+        'id_type_publication': id_type_publication, 'id_categorie':id_categorie, 'id_texte':id_texte, 'page':page
+      },
+      success: function (data) {
+        $("#list_donnee").html();
+        $("#list_donnee").html(data);
+        $("#nombre_publication").html($("#id_nombre_publication").text())
+      }
+    });
+  }); */
+</script>
+
+
+<style type="text/css">
+.zoom {
+  width: 320px;
+  height: 240px;
+  }
+  .photo {
+  width: 100%;
+  height: 100%;
+  }
+  .photo img {
+  /* La transition s'applique à la fois sur la largeur et la hauteur, avec une durée d'une seconde. */
+  -webkit-transition: all 1s ease; /* Safari et Chrome */
+  -moz-transition: all 1s ease; /* Firefox */
+  -ms-transition: all 1s ease; /* Internet Explorer 9 */
+  -o-transition: all 1s ease; /* Opera */
+  transition: all 1s ease;
+  }
+  .photo:hover img {
+  /* L'image est grossie de 25% */
+  -webkit-transform:scale(1.25); /* Safari et Chrome */
+  -moz-transform:scale(1.25); /* Firefox */
+  -ms-transform:scale(1.25); /* Internet Explorer 9 */
+  -o-transform:scale(1.25); /* Opera */
+  transform:scale(1.25);
+  }
+</style>
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.css' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+{% endblock content %}
+<hr>
